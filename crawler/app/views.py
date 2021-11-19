@@ -28,8 +28,9 @@ def find_airkorea(gps):
     if res.status_code != 200 :
         print(res.text)
         return None
-        
-    location=res.json()['response']['result']['featureCollection']['features'][0]['properties']['sig_kor_nm']
+    json_loc=res.json()
+    location=json_loc['response']['result']['featureCollection']['features'][0]['properties']['sig_kor_nm']
+    
     default_airkorea_url='http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?serviceKey=i%2BZcNpR8%2BTbY%2BB%2FEXAV6qnMCBHmgcfwzcEfA%2Fap8vqckk%2BDn%2FvZDzgeaT28h95%2BhacFHs8Chrfkr2Bb4gILtsw%3D%3D&returnType=json&ver=1.3&dataTerm=DAILY&'
     stationName='stationName=' + location
     res=requests.get(default_airkorea_url+stationName)
