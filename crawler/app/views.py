@@ -54,10 +54,10 @@ def gps(request):
             # 이 저장 기능은 로그 기능을 위한 것으로, 그것도 어차피 개발 단계의 디버깅을 위한 것이다.
             #자체적으로 기간이 오래된 데이터는 삭제해주는 기능이 필요하다.
 
-            airkorea=find_airkorea(serializer1.data['gps'])
+            ak=find_airkorea(serializer1.data['gps'])
             if airkorea != None:
-                ak=AirKorea.objects.create(airkorea=airkorea)
-                serializer2=AirKoreaSerializer(ak)
+                d={ 'airkorea' : ak}
+                serializer2=AirKoreaSerializer(data=d)
                 if serializer2.is_valid():
                     serializer2.save()
                 # 이 저장 기능 역시 마찬가지이다. 
