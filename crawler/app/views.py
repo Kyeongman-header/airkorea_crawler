@@ -19,10 +19,11 @@ import datetime
 def find_airkorea(gps):
     # json 파싱한 데이터를 받는 거니까 이미 string일듯.
     gps=gps.split(';')[1]
+    gps=gps[6:]
     # 단 앞에 좌표게 정보 SRID=4326;이 있으므로 ;를 구분자로 하여 파싱해주고 뒤에 있는 놈을 취하면 됨.
     
     default_location_url='http://api.vworld.kr/req/data?service=data&request=GetFeature&data=LT_C_ADSIGG_INFO&key=FEA696B3-DA29-3EC5-95F3-5272C2CD83B5&'
-    geomFilter='geomFilter=' + gps
+    geomFilter='geomFilter=Point' + gps
     res=requests.get(default_location_url+geomFilter)
     
     if res.status_code != 200 :
