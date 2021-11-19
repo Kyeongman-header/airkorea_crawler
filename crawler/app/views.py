@@ -42,27 +42,27 @@ def find_airkorea(gps):
 
 @csrf_exempt
 def gps(request):
-    if request.user.is_admin:
-        if request.method == "POST":
-            data=JSONParser().parse(request)
-            serializer1=GPSSerializer(data=data)
-            if serializer1.is_valid():
-                
-                serializer1.save()
-                # 이 저장 기능은 로그 기능을 위한 것으로, 그것도 어차피 개발 단계의 디버깅을 위한 것이다.
-                #자체적으로 기간이 오래된 데이터는 삭제해주는 기능이 필요하다.
-                
-                airkorea=find_airkorea(serializer1.data['gps'])
-                if airkorea != None:
-                    ak=AirKorea.objects.create(airkorea=airkorea)
-                    serializer2=AirKoreaSerializer(ak)
-                    
-                    serializer2.save()
-                    # 이 저장 기능 역시 마찬가지이다. 
-                
-                    return JsonResponse(serializer2.data,status=201)
+    #if request.user.is_admin:
+    if request.method == "POST":
+        data=JSONParser().parse(request)
+        serializer1=GPSSerializer(data=data)
+        if serializer1.is_valid():
 
-            return JsonResponse(serializer1.errors,status=400)
-        return HttpResponse(status=405)
-    return HttpResponse(status=401)
+            serializer1.save()
+            # 이 저장 기능은 로그 기능을 위한 것으로, 그것도 어차피 개발 단계의 디버깅을 위한 것이다.
+            #자체적으로 기간이 오래된 데이터는 삭제해주는 기능이 필요하다.
+
+            airkorea=find_airkorea(serializer1.data['gps'])
+            if airkorea != None:
+                ak=AirKorea.objects.create(airkorea=airkorea)
+                serializer2=AirKoreaSerializer(ak)
+
+                serializer2.save()
+                # 이 저장 기능 역시 마찬가지이다. 
+
+                return JsonResponse(serializer2.data,status=201)
+
+        return JsonResponse(serializer1.errors,status=400)
+    return HttpResponse(status=405)
+    #return HttpResponse(status=401)
 
