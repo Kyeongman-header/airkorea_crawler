@@ -58,8 +58,8 @@ def gps(request):
             if airkorea != None:
                 ak=AirKorea.objects.create(airkorea=airkorea)
                 serializer2=AirKoreaSerializer(ak)
-
-                serializer2.save()
+                if serializer2.is_valid():
+                    serializer2.save()
                 # 이 저장 기능 역시 마찬가지이다. 
 
                 return JsonResponse(serializer2.data,status=201)
