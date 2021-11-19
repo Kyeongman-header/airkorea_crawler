@@ -55,7 +55,7 @@ def gps(request):
             #자체적으로 기간이 오래된 데이터는 삭제해주는 기능이 필요하다.
 
             ak=find_airkorea(serializer1.data['gps'])
-            if airkorea != None:
+            if ak != None:
                 d={ 'airkorea' : ak}
                 serializer2=AirKoreaSerializer(data=d)
                 if serializer2.is_valid():
