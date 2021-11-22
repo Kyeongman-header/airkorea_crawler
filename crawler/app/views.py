@@ -29,20 +29,18 @@ def find_airkorea(gps):
     Y=xy[2]
 
     # 단 앞에 좌표게 정보 SRID=4326;이 있으므로 ;를 구분자로 하여 파싱해주고 뒤에 있는 놈을 취하면 됨.
-    
-    #default_location_url='http://api.vworld.kr/req/data?service=data&request=GetFeature&data=LT_C_ADSIGG_INFO&key=FEA696B3-DA29-3EC5-95F3-5272C2CD83B5&'
-    #geomFilter='geomFilter=Point' + gps
-    #res=requests.get(default_location_url+geomFilter)
-    
-    #if res.status_code != 200 :
-    #    print(res.text)
-    #    return None
-    #json_loc=res.json()
-    #location=json_loc['response']['result']['featureCollection']['features'][0]['properties']['sig_kor_nm']
+   
     proj_GRS80=Proj(init='epsg:5181')
     proj_WGS84=Proj(init='epsg:4326')
-    X2,Y2=transform(proj_WGS84,proj_GRS80,X,Y)
-    loc_airkorea_url='http://apis.data.go.kr/B552584'
+    X2,Y2=transform(proj_WGS84,proj_GRS80,float(X),float(Y))
+    loc_airkorea_url='http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?serviceKey=i%2BZcNpR8%2BTbY%2BB%2FEXAV6qnMCBHmgcfwzcEfA%2Fap8vqckk%2BDn%2FvZDzgeaT28h95%2BhacFHs8Chrfkr2Bb4gILtsw%3D%3D&returnType=json&ver=1.0&'
+    TM_xy='tmX='+str(X2)+'&tmY='+str(Y2)
+    res=requests.get(loc_airkorea_url+TM_xy)
+    if res.status_code !=200:
+        print(res.text)
+        return None
+    
+    location=res.json()['response']['body']['items'][0]['stationName']
 
     default_airkorea_url='http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?serviceKey=i%2BZcNpR8%2BTbY%2BB%2FEXAV6qnMCBHmgcfwzcEfA%2Fap8vqckk%2BDn%2FvZDzgeaT28h95%2BhacFHs8Chrfkr2Bb4gILtsw%3D%3D&returnType=json&ver=1.3&dataTerm=DAILY&'
     stationName='stationName=' + location
