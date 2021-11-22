@@ -4,9 +4,9 @@ from django.contrib.gis.admin import OSMGeoAdmin
 # Register your models here
 
 class GPSAdmin(OSMGeoAdmin):
-    list_display=('pub_date','gps')
-    list_filter=['pub_date','gps']
-    search_fields=['pub_date','gps']
+    list_display=('pub_date','gps','location')
+    list_filter=['pub_date','gps','location']
+    search_fields=['pub_date','gps','location']
 class AirKoreaAdmin(admin.ModelAdmin):
     list_display=('pub_date','airkorea')
     list_filter=['pub_date','airkorea']

@@ -4,7 +4,7 @@ from rest_framework import serializers
 class GPSSerializer(serializers.ModelSerializer):
     class Meta:
         model=GPS
-        fields=['gps','pub_date']
+        fields=['gps','location','pub_date']
 
 class AirKoreaSerializer(serializers.ModelSerializer):
     class Meta:
