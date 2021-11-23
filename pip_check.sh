@@ -51,6 +51,6 @@ fi
 
 if [ ! -d /usr/local/lib/python3.8/dist-packages/pyproj ]
 then
-  	printf "django-rest-auth was not installed in pip. installing that library.\n" >> /tmp/code_deploy_scripts_checker.log
+  	printf "django-pyproj (for using curl) was not installed in pip. installing that library.\n" >> /tmp/code_deploy_scripts_checker.log
   	pip install pyproj
 fi
