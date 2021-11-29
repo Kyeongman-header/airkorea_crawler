@@ -33,7 +33,7 @@ def find_airkorea(gps):
     proj_GRS80=Proj(init='epsg:5181')
     proj_WGS84=Proj(init='epsg:4326')
     X2,Y2=transform(proj_WGS84,proj_GRS80,float(X),float(Y))
-    loc_airkorea_url='http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?serviceKey=i%2BZcNpR8%2BTbY%2BB%2FEXAV6qnMCBHmgcfwzcEfA%2Fap8vqckk%2BDn%2FvZDzgeaT28h95%2BhacFHs8Chrfkr2Bb4gILtsw%3D%3D&returnType=json&ver=1.0&'
+    loc_airkorea_url='http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getNearbyMsrstnList?serviceKey=i%2BZcNpR8%2BTbY%2BB%2FEXAV6qnMCBHmgcfwzcEfA%2Fap8vqckk%2BDn%2FvZDzgeaT28h95%2BhacFHs8Chrfkr2Bb4gILtsw%3D%3D&returnType=json&'
     TM_xy='tmX='+str(X2)+'&tmY='+str(Y2)
     res=requests.get(loc_airkorea_url+TM_xy)
     if res.status_code !=200:
