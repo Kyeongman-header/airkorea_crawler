@@ -23,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*@1wws5$y082udac#yw=h0gc^#l+$&*ijh93+618e+kpqdr58m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ['crawler.auton-iot.com']
 
 
