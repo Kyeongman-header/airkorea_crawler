@@ -10,7 +10,7 @@ from django.conf import settings
 class GPS(models.Model):
     gps=models.PointField()
     location=models.CharField(default="unknown",max_length=20,null=True,blank=True)
-    pub_date=models.DateTimeField(default=timezone.now)
+    pub_date=models.DateTimeField(default=timezone.localtime)
 
     def __str__(self):
         return str(self.gps)
@@ -18,6 +18,6 @@ class GPS(models.Model):
 class AirKorea(models.Model):
     now=timezone.now()
     airkorea=models.JSONField()
-    pub_date=models.DateTimeField(default=timezone.now)
+    pub_date=models.DateTimeField(default=timezone.localtime)
     def __str__(self):
         return str(self.airkorea)
