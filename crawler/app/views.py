@@ -49,7 +49,7 @@ def find_airkorea(gps):
         print(res.text)
         return None
     
-    return location, (res.json()['response']['body']['items'][0]['pm25Value'])
+    return location, float((res.json()['response']['body']['items'][0]['pm25Value']))
 
 
 @csrf_exempt
@@ -74,7 +74,7 @@ def gps(request):
             #자체적으로 기간이 오래된 데이터는 삭제해주는 기능이 필요하다.
 
         if ak != None:
-            d={ 'airkorea' : ak}
+            d={ 'airkorea' : {'P.M 2.5' : ak}}
             serializer2=AirKoreaSerializer(data=d)
             if serializer2.is_valid():
                 serializer2.save()
