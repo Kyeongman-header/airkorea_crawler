@@ -52,7 +52,7 @@ def find_airkorea(gps):
     airkorea_datas=res.json()['response']['body']['items'][0]
     
     
-    return location, float(res.json()['response']['body']['items'][0]['so2Value']) if airkorea_datas['so2Flag']==None else 0, float(res.json()['response']['body']['items'][0]['coValue']) if airkorea_datas['coFlag']==None else 0, float(res.json()['response']['body']['items'][0]['o3Value']) if airkorea_datas['o3Flag']==None else 0,float(res.json()['response']['body']['items'][0]['no2Value']) if airkorea_datas['no2Flag']==None else 0,float(res.json()['response']['body']['items'][0]['pm25Value']) if airkorea_datas['pm25Flag']==None else 0,float(res.json()['response']['body']['items'][0]['khaiValue']) if airkorea_datas['khaiFlag']==None else 0
+    return location, float(res.json()['response']['body']['items'][0]['so2Value']) if airkorea_datas['so2Flag']==None else 0, float(res.json()['response']['body']['items'][0]['coValue']) if airkorea_datas['coFlag']==None else 0, float(res.json()['response']['body']['items'][0]['o3Value']) if airkorea_datas['o3Flag']==None else 0,float(res.json()['response']['body']['items'][0]['no2Value']) if airkorea_datas['no2Flag']==None else 0,float(res.json()['response']['body']['items'][0]['pm25Value']) if airkorea_datas['pm25Flag']==None else 0,float(res.json()['response']['body']['items'][0]['khaiValue'])
 
 
 
