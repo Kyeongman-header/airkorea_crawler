@@ -48,7 +48,6 @@ def find_airkorea(gps):
     if res.status_code !=200:
         print(res.text)
         return None
-    
     return location, float(res.json()['response']['body']['items'][0]['so2Value']), float(res.json()['response']['body']['items'][0]['coValue']), float(res.json()['response']['body']['items'][0]['o3Value']),float(res.json()['response']['body']['items'][0]['no2Value']),float(res.json()['response']['body']['items'][0]['pm25Value']),float(res.json()['response']['body']['items'][0]['khaiValue'])
 
 
