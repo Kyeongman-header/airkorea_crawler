@@ -63,10 +63,9 @@ def gps(request):
     Y=request.GET.get('Y',None)
     point='SRID=4326;POINT (' + X + ' ' + Y + ')'
     gps={'gps':point}
-    try{
+    try:
         location,so2,co,o3,no2,pm2_5,khai=find_airkorea(point)
-    }
-    catch(e){
+    except:
         location="에어 코리아 unknown 오류"
         so2=0
         co=0
@@ -74,7 +73,6 @@ def gps(request):
         no2=0
         pm2_5=0
         khai=0
-    }
 
     d={'gps':point,'location':location}
 
